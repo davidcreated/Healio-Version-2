@@ -4,12 +4,11 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:healio_version_2/app/modules/patients/controllers/signup2controller.dart';
 import 'package:healio_version_2/app/routes/approutes.dart';
-// import 'package:healio_version_2/app/modules/patients/controllers/profile_completion_controller.dart';
-// import 'package:healio_version_2/core/constants/appcolors.dart';
-// import 'package:healio_version_2/core/constants/appsizes.dart';
-// import 'package:healio_version_2/core/constants/apptextstyles.dart';
 
-/// Patient Profile Completion Page - Properly Structured UI
+// Define the primary color
+const Color primaryColor = Color(0xFF002180);
+
+/// Patient Profile Completion Page - Fixed Overflow Issues
 class PatientProfileCompletionPage extends StatelessWidget {
   const PatientProfileCompletionPage({super.key});
 
@@ -19,59 +18,9 @@ class PatientProfileCompletionPage extends StatelessWidget {
       init: ProfileCompletionController(),
       builder: (controller) {
         return Scaffold(
-          backgroundColor: Colors.white,
-          appBar: _buildAppBar(controller),
           body: _buildBody(context, controller),
         );
       },
-    );
-  }
-
-  // =============================================================================
-  // APP BAR
-  // =============================================================================
-
-  PreferredSizeWidget _buildAppBar(ProfileCompletionController controller) {
-    return AppBar(
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      leading: IconButton(
-        icon: const Icon(Icons.arrow_back_ios, color: Colors.blue),
-        onPressed: () => Get.back(),
-      ),
-      title: const Text(
-        'Complete Profile',
-        style: TextStyle(
-          color: Colors.black87,
-          fontSize: 20,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
-      centerTitle: true,
-      bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(8.0),
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 20),
-          child: Obx(() => Column(
-            children: [
-              LinearProgressIndicator(
-                value: controller.formProgress.value,
-                backgroundColor: Colors.grey[300],
-                valueColor: AlwaysStoppedAnimation<Color>(controller.progressColor),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                '${controller.completionPercentage} - ${controller.currentStepDescription}',
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.grey[600],
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ],
-          )),
-        ),
-      ),
     );
   }
 
@@ -84,33 +33,20 @@ class PatientProfileCompletionPage extends StatelessWidget {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Stack(
         children: [
-          _buildBackgroundImage(context),
+          _buildBackgroundImage(),
           _buildScrollableContent(context, controller),
+          _buildAppBar(controller),
         ],
       ),
     );
   }
 
-  Widget _buildBackgroundImage(BuildContext context) {
-    return Positioned.fill(
-      child: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('lib/assets/images/patient/signupscreen1.jpg'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.white.withOpacity(0.7),
-                Colors.white.withOpacity(0.9),
-              ],
-            ),
-          ),
+  Widget _buildBackgroundImage() {
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('lib/assets/images/patient/signupscreen1.jpg'),
+          fit: BoxFit.cover,
         ),
       ),
     );
@@ -119,24 +55,106 @@ class PatientProfileCompletionPage extends StatelessWidget {
   Widget _buildScrollableContent(BuildContext context, ProfileCompletionController controller) {
     return SafeArea(
       child: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
-        child: Form(
-          key: controller.formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildPageHeader(),
-              const SizedBox(height: 24),
-              _buildPersonalInfoSection(controller),
-              _buildContactInfoSection(controller),
-              _buildMedicalInfoSection(controller),
-              _buildIdentificationSection(context, controller),
-              _buildEmergencyContactSection(controller),
-              const SizedBox(height: 24),
-              _buildCompleteProfileButton(context, controller),
-              const SizedBox(height: 40),
-            ],
+        physics: const ClampingScrollPhysics(),
+        child: Padding(
+          padding: EdgeInsets.only(
+            left: 16.0,
+            right: 16.0,
+            top: 80.0, // Space for app bar
+            bottom: MediaQuery.of(context).viewInsets.bottom + 40,
           ),
+          child: Form(
+            key: controller.formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                _buildProfileImageSection(controller),
+                const SizedBox(height: 24),
+                _buildPageHeader(),
+                const SizedBox(height: 20),
+                _buildPersonalInfoSection(controller),
+                _buildContactInfoSection(controller),
+                _buildMedicalInfoSection(controller),
+                _buildIdentificationSection(context, controller),
+                _buildEmergencyContactSection(controller),
+                const SizedBox(height: 24),
+                _buildCompleteProfileButton(context, controller),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+  
+  // =============================================================================
+  // PROFILE IMAGE SECTION
+  // =============================================================================
+
+  Widget _buildProfileImageSection(ProfileCompletionController controller) {
+    return Center(
+      child: Stack(
+        children: [
+          Obx(() {
+            final image = controller.profileImage.value;
+            return CircleAvatar(
+              radius: 50,
+              backgroundColor: Colors.white.withOpacity(0.8),
+              backgroundImage: image != null ? FileImage(image) : null,
+              child: image == null
+                  ? const Icon(Icons.person, size: 50, color: primaryColor)
+                  : null,
+            );
+          }),
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: GestureDetector(
+              onTap: () => controller.showImageSourceDialog(isProfile: true),
+              child: Container(
+                padding: const EdgeInsets.all(6),
+                decoration: const BoxDecoration(
+                  color: primaryColor,
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(Icons.edit, color: Colors.white, size: 18),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // =============================================================================
+  // APP BAR (CUSTOM)
+  // =============================================================================
+
+  Widget _buildAppBar(ProfileCompletionController controller) {
+    return Positioned(
+      top: 0,
+      left: 0,
+      right: 0,
+      child: SafeArea(
+        child: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios, color: primaryColor),
+            onPressed: () => Get.back(),
+          ),
+          title: const FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              'Complete Your Profile',
+              style: TextStyle(
+                color: primaryColor,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          centerTitle: true,
         ),
       ),
     );
@@ -147,27 +165,14 @@ class PatientProfileCompletionPage extends StatelessWidget {
   // =============================================================================
 
   Widget _buildPageHeader() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Let\'s complete your profile',
-          style: TextStyle(
-            fontSize: 28,
-            fontWeight: FontWeight.bold,
-            color: Colors.black87,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          'This information helps us provide better healthcare services',
-          style: TextStyle(
-            fontSize: 16,
-            color: Colors.grey[600],
-            height: 1.4,
-          ),
-        ),
-      ],
+    return const Text(
+      'Fill in your details to get started.',
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: 15,
+        color: Colors.black54,
+        fontWeight: FontWeight.w500,
+      ),
     );
   }
 
@@ -183,10 +188,11 @@ class PatientProfileCompletionPage extends StatelessWidget {
         Row(
           children: [
             Expanded(
+              flex: 1,
               child: _buildTextField(
                 controller: controller.ageController,
                 label: 'Age',
-                hint: 'Enter your age',
+                hint: 'Your age',
                 icon: Icons.cake_outlined,
                 keyboardType: TextInputType.number,
                 inputFormatters: [
@@ -196,21 +202,22 @@ class PatientProfileCompletionPage extends StatelessWidget {
                 validator: controller.validateAge,
               ),
             ),
-            const SizedBox(width: 16),
+            const SizedBox(width: 12),
             Expanded(
+              flex: 1,
               child: Obx(() => _buildDropdownField(
                 label: 'Gender',
-                hint: 'Select gender',
+                hint: 'Select',
                 icon: Icons.people_outline,
                 value: controller.selectedGender.value.isEmpty ? null : controller.selectedGender.value,
                 items: ProfileCompletionController.genderOptions,
                 onChanged: controller.updateGender,
-                validator: (value) => value?.isEmpty ?? true ? 'Please select gender' : null,
+                validator: (value) => value == null || value.isEmpty ? 'Required' : null,
               )),
             ),
           ],
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 12),
         _buildTextField(
           controller: controller.addressController,
           label: 'Home Address',
@@ -218,32 +225,6 @@ class PatientProfileCompletionPage extends StatelessWidget {
           icon: Icons.home_outlined,
           maxLines: 2,
           validator: controller.validateAddress,
-        ),
-        const SizedBox(height: 16),
-        Row(
-          children: [
-            Expanded(
-              child: Obx(() => _buildDropdownField(
-                label: 'State',
-                hint: 'Select state',
-                icon: Icons.location_on_outlined,
-                value: controller.selectedState.value.isEmpty ? null : controller.selectedState.value,
-                items: ProfileCompletionController.nigerianStates,
-                onChanged: controller.updateState,
-                validator: (value) => value?.isEmpty ?? true ? 'Please select state' : null,
-              )),
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: _buildTextField(
-                controller: controller.cityController,
-                label: 'City/LGA',
-                hint: 'Enter city',
-                icon: Icons.location_city_outlined,
-                validator: (value) => value?.isEmpty ?? true ? 'Please enter city' : null,
-              ),
-            ),
-          ],
         ),
       ],
     );
@@ -260,24 +241,7 @@ class PatientProfileCompletionPage extends StatelessWidget {
           hint: 'e.g., 08012345678',
           icon: Icons.phone_outlined,
           keyboardType: TextInputType.phone,
-          inputFormatters: [
-            FilteringTextInputFormatter.digitsOnly,
-            LengthLimitingTextInputFormatter(11),
-          ],
           validator: controller.validatePhoneNumber,
-        ),
-        const SizedBox(height: 16),
-        _buildTextField(
-          controller: controller.alternativePhoneController,
-          label: 'Alternative Phone (Optional)',
-          hint: 'e.g., 07098765432',
-          icon: Icons.phone_outlined,
-          keyboardType: TextInputType.phone,
-          inputFormatters: [
-            FilteringTextInputFormatter.digitsOnly,
-            LengthLimitingTextInputFormatter(11),
-          ],
-          validator: controller.validateAlternativePhone,
         ),
       ],
     );
@@ -290,33 +254,24 @@ class PatientProfileCompletionPage extends StatelessWidget {
       children: [
         Obx(() => _buildDropdownField(
           label: 'Blood Type',
-          hint: 'Select blood type',
+          hint: 'Select',
           icon: Icons.opacity_outlined,
           value: controller.selectedBloodType.value.isEmpty ? null : controller.selectedBloodType.value,
           items: ProfileCompletionController.bloodTypes,
           onChanged: controller.updateBloodType,
-          validator: (value) => value?.isEmpty ?? true ? 'Please select blood type' : null,
+          validator: (value) => value == null || value.isEmpty ? 'Required' : null,
         )),
-        const SizedBox(height: 16),
+        const SizedBox(height: 12),
         _buildTextField(
           controller: controller.allergiesController,
           label: 'Known Allergies (Optional)',
-          hint: 'List any known allergies',
+          hint: 'e.g., Pollen, Peanuts',
           icon: Icons.warning_outlined,
-          maxLines: 2,
-        ),
-        const SizedBox(height: 16),
-        _buildTextField(
-          controller: controller.medicalConditionsController,
-          label: 'Existing Medical Conditions (Optional)',
-          hint: 'List any existing conditions',
-          icon: Icons.health_and_safety_outlined,
-          maxLines: 2,
         ),
       ],
     );
   }
-
+  
   Widget _buildIdentificationSection(BuildContext context, ProfileCompletionController controller) {
     return _buildSection(
       title: 'Government Identification',
@@ -331,7 +286,7 @@ class PatientProfileCompletionPage extends StatelessWidget {
           onChanged: controller.updateIdType,
           validator: (value) => value?.isEmpty ?? true ? 'Please select ID type' : null,
         )),
-        const SizedBox(height: 16),
+        const SizedBox(height: 12),
         _buildTextField(
           controller: controller.idNumberController,
           label: 'ID Number',
@@ -339,7 +294,7 @@ class PatientProfileCompletionPage extends StatelessWidget {
           icon: Icons.confirmation_number_outlined,
           validator: controller.validateIdNumber,
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 16),
         _buildIdUploadSection(controller),
       ],
     );
@@ -357,7 +312,7 @@ class PatientProfileCompletionPage extends StatelessWidget {
           icon: Icons.person_outlined,
           validator: (value) => value?.isEmpty ?? true ? 'Please enter emergency contact name' : null,
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 12),
         _buildTextField(
           controller: controller.emergencyContactPhoneController,
           label: 'Contact Phone',
@@ -370,7 +325,7 @@ class PatientProfileCompletionPage extends StatelessWidget {
           ],
           validator: controller.validateEmergencyPhone,
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 12),
         _buildTextField(
           controller: controller.emergencyContactRelationshipController,
           label: 'Relationship',
@@ -393,38 +348,48 @@ class PatientProfileCompletionPage extends StatelessWidget {
         const Text(
           'Upload ID Documents',
           style: TextStyle(
-            fontSize: 16,
+            fontSize: 15,
             fontWeight: FontWeight.w600,
-            color: Colors.blue,
+            color: primaryColor,
           ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 8),
         Text(
           'Please upload clear photos of both sides of your ID',
           style: TextStyle(
-            fontSize: 14,
+            fontSize: 13,
             color: Colors.grey[600],
           ),
         ),
-        const SizedBox(height: 16),
-        Row(
-          children: [
-            Expanded(
-              child: _buildIdUploadCard(
-                title: 'Front Side',
-                controller: controller,
-                isBack: false,
-              ),
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: _buildIdUploadCard(
-                title: 'Back Side',
-                controller: controller,
-                isBack: true,
-              ),
-            ),
-          ],
+        const SizedBox(height: 12),
+        LayoutBuilder(
+          builder: (context, constraints) {
+            // Calculate available width for each card
+            final availableWidth = constraints.maxWidth - 12; // Subtract spacing
+            final cardWidth = availableWidth / 2;
+            
+            return Row(
+              children: [
+                SizedBox(
+                  width: cardWidth,
+                  child: _buildIdUploadCard(
+                    title: 'Front Side',
+                    controller: controller,
+                    isBack: false,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                SizedBox(
+                  width: cardWidth,
+                  child: _buildIdUploadCard(
+                    title: 'Back Side',
+                    controller: controller,
+                    isBack: true,
+                  ),
+                ),
+              ],
+            );
+          },
         ),
       ],
     );
@@ -442,13 +407,14 @@ class PatientProfileCompletionPage extends StatelessWidget {
       return GestureDetector(
         onTap: isUploading ? null : () => controller.showImageSourceDialog(isBack: isBack),
         child: Container(
-          height: 140,
+          height: 120,
+          width: double.infinity,
           decoration: BoxDecoration(
             border: Border.all(
               color: image != null ? Colors.green : Colors.grey[400]!,
-              width: 2,
+              width: 1.5,
             ),
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(10),
             color: Colors.white,
           ),
           child: isUploading 
@@ -465,12 +431,19 @@ class PatientProfileCompletionPage extends StatelessWidget {
     return const Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        CircularProgressIndicator(strokeWidth: 2),
-        SizedBox(height: 12),
+        SizedBox(
+          width: 20,
+          height: 20,
+          child: CircularProgressIndicator(
+            strokeWidth: 2, 
+            valueColor: AlwaysStoppedAnimation<Color>(primaryColor)
+          ),
+        ),
+        SizedBox(height: 8),
         Text(
           'Uploading...',
           style: TextStyle(
-            fontSize: 12,
+            fontSize: 11,
             color: Colors.grey,
           ),
         ),
@@ -482,7 +455,7 @@ class PatientProfileCompletionPage extends StatelessWidget {
     return Stack(
       children: [
         ClipRRect(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(8),
           child: Image.file(
             image,
             width: double.infinity,
@@ -491,39 +464,41 @@ class PatientProfileCompletionPage extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: 8,
-          right: 8,
+          top: 4,
+          right: 4,
           child: Container(
             decoration: const BoxDecoration(
               color: Colors.red,
               shape: BoxShape.circle,
             ),
-            child: IconButton(
-              icon: const Icon(Icons.close, color: Colors.white, size: 16),
-              onPressed: () => controller.removeIdImage(isBack: isBack),
-              padding: EdgeInsets.zero,
-              constraints: const BoxConstraints(minWidth: 28, minHeight: 28),
+            child: GestureDetector(
+              onTap: () => controller.removeIdImage(isBack: isBack),
+              child: const Padding(
+                padding: EdgeInsets.all(4),
+                child: Icon(Icons.close, color: Colors.white, size: 14),
+              ),
             ),
           ),
         ),
         Positioned(
-          bottom: 8,
-          left: 8,
-          right: 8,
+          bottom: 4,
+          left: 4,
+          right: 4,
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
             decoration: BoxDecoration(
               color: Colors.black54,
-              borderRadius: BorderRadius.circular(4),
+              borderRadius: BorderRadius.circular(3),
             ),
             child: Text(
               isBack ? 'Back Side' : 'Front Side',
               style: const TextStyle(
                 color: Colors.white,
-                fontSize: 12,
+                fontSize: 10,
                 fontWeight: FontWeight.w500,
               ),
               textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ),
@@ -537,23 +512,27 @@ class PatientProfileCompletionPage extends StatelessWidget {
       children: [
         Icon(
           Icons.add_photo_alternate_outlined,
-          size: 40,
+          size: 28,
           color: Colors.grey[600],
         ),
-        const SizedBox(height: 12),
-        Text(
-          title,
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
-            color: Colors.grey[700],
+        const SizedBox(height: 6),
+        Flexible(
+          child: Text(
+            title,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: Colors.grey[700],
+            ),
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
           ),
         ),
-        const SizedBox(height: 4),
+        const SizedBox(height: 2),
         Text(
           'Tap to upload',
           style: TextStyle(
-            fontSize: 12,
+            fontSize: 10,
             color: Colors.grey[500],
           ),
         ),
@@ -571,16 +550,16 @@ class PatientProfileCompletionPage extends StatelessWidget {
     required List<Widget> children,
   }) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 24),
-      padding: const EdgeInsets.all(20),
+      margin: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.95),
-        borderRadius: BorderRadius.circular(16),
+        color: Colors.white.withOpacity(0.85),
+        borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.08),
+            color: Colors.black.withOpacity(0.05),
             blurRadius: 10,
-            offset: const Offset(0, 4),
+            offset: const Offset(0, 3),
           ),
         ],
       ),
@@ -592,23 +571,26 @@ class PatientProfileCompletionPage extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: Colors.blue.withOpacity(0.1),
+                  color: primaryColor.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Icon(icon, color: Colors.blue, size: 20),
+                child: Icon(icon, color: primaryColor, size: 20),
               ),
               const SizedBox(width: 12),
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black87,
+              Expanded(
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF333333),
+                  ),
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 20),
+          const Divider(height: 24),
           ...children,
         ],
       ),
@@ -633,11 +615,10 @@ class PatientProfileCompletionPage extends StatelessWidget {
         prefixIcon: icon,
       ),
       validator: validator,
-      keyboardType: maxLines > 1 ? TextInputType.multiline : keyboardType,
+      keyboardType: keyboardType,
       inputFormatters: inputFormatters,
       maxLines: maxLines,
-      textInputAction: maxLines > 1 ? TextInputAction.newline : TextInputAction.next,
-      style: const TextStyle(fontSize: 16),
+      style: const TextStyle(fontSize: 15, color: Color(0xFF333333)),
     );
   }
 
@@ -657,21 +638,18 @@ class PatientProfileCompletionPage extends StatelessWidget {
         hintText: hint,
         prefixIcon: icon,
       ),
-      items: items.map((String item) {
-        return DropdownMenuItem<String>(
-          value: item,
-          child: Text(
-            item,
-            style: const TextStyle(fontSize: 16),
-            overflow: TextOverflow.ellipsis,
-          ),
-        );
-      }).toList(),
+      items: items.map((item) => DropdownMenuItem<String>(
+        value: item,
+        child: Text(
+          item, 
+          style: const TextStyle(fontSize: 15),
+          overflow: TextOverflow.ellipsis,
+        ),
+      )).toList(),
       onChanged: onChanged,
       validator: validator,
-      style: const TextStyle(fontSize: 16, color: Colors.black87),
-      dropdownColor: Colors.white,
-      icon: const Icon(Icons.arrow_drop_down, color: Colors.grey),
+      style: const TextStyle(fontSize: 15, color: Color(0xFF333333)),
+      icon: const Icon(Icons.arrow_drop_down_rounded, color: Colors.grey),
       isExpanded: true,
     );
   }
@@ -680,47 +658,37 @@ class PatientProfileCompletionPage extends StatelessWidget {
     required String labelText,
     required String hintText,
     IconData? prefixIcon,
-    Widget? suffixIcon,
   }) {
     return InputDecoration(
       labelText: labelText,
       hintText: hintText,
-      labelStyle: TextStyle(
-        color: Colors.grey[700],
-        fontSize: 16,
-        fontWeight: FontWeight.w500,
-      ),
-      hintStyle: TextStyle(
-        color: Colors.grey[500],
-        fontSize: 16,
-      ),
-      prefixIcon: prefixIcon != null 
-          ? Icon(prefixIcon, color: Colors.grey[600], size: 22) 
-          : null,
-      suffixIcon: suffixIcon,
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: Colors.grey[300]!),
-      ),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: Colors.grey[300]!),
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(color: Colors.blue, width: 2),
-      ),
-      errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(color: Colors.red, width: 1),
-      ),
-      focusedErrorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(color: Colors.red, width: 2),
-      ),
+      labelStyle: const TextStyle(color: Colors.black54, fontWeight: FontWeight.w500, fontSize: 14),
+      hintStyle: const TextStyle(color: Colors.grey, fontSize: 14),
+      prefixIcon: prefixIcon != null ? Icon(prefixIcon, color: primaryColor, size: 20) : null,
       filled: true,
       fillColor: Colors.white.withOpacity(0.9),
-      contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide.none,
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide.none,
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: const BorderSide(color: primaryColor, width: 1.5),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: const BorderSide(color: Colors.redAccent, width: 1),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: const BorderSide(color: Colors.redAccent, width: 1.5),
+      ),
+      contentPadding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+      isDense: true,
     );
   }
 
@@ -729,76 +697,36 @@ class PatientProfileCompletionPage extends StatelessWidget {
   // =============================================================================
 
   Widget _buildCompleteProfileButton(BuildContext context, ProfileCompletionController controller) {
-    return Container(
-      width: double.infinity,
-      height: 56,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.blue.withOpacity(0.3),
-            blurRadius: 8,
-            offset: const Offset(0, 4),
+    return Obx(() {
+      final isLoading = controller.isLoading.value;
+      return ElevatedButton(
+        onPressed: () {
+          // TODO: Implement profile completion logic
+           Get.offNamed(AppRoutes.patienthomepage);
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: primaryColor,
+          foregroundColor: Colors.white,
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
           ),
-        ],
-      ),
-      child: Obx(() {
-        final bool canSubmit = controller.canSubmitForm;
-        final bool isLoading = controller.isLoading.value;
-        
-        return ElevatedButton(
-          onPressed: () {
-            Get.offNamed(AppRoutes.patienthomepage);
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: canSubmit ? Colors.blue : Colors.grey[400],
-            foregroundColor: Colors.white,
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-            textStyle: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          child: isLoading 
-              ? _buildLoadingButtonContent()
-              : _buildButtonContent(canSubmit, controller),
-        );
-      }),
-    );
-  }
-
-  Widget _buildLoadingButtonContent() {
-    return const Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(
-          width: 20,
-          height: 20,
-          child: CircularProgressIndicator(
-            strokeWidth: 2,
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+          textStyle: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(width: 12),
-        Text('Completing Profile...'),
-      ],
-    );
-  }
-
-  Widget _buildButtonContent(bool canSubmit, ProfileCompletionController controller) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(
-          canSubmit ? Icons.check_circle_outline : Icons.info_outline,
-          size: 24,
-        ),
-        const SizedBox(width: 8),
-        Text(canSubmit ? 'Complete Profile' : controller.currentStepDescription),
-      ],
-    );
+        child: isLoading
+            ? const SizedBox(
+                height: 20,
+                width: 20,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                ),
+              )
+            : const Text('Complete Profile'),
+      );
+    });
   }
 }

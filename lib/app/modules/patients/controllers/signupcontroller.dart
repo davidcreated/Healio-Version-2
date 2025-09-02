@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 // NOTE: Make sure these paths point to your actual page files.
-import 'package:healio_version_2/Screens/signup/signup.dart'; 
 import 'package:healio_version_2/Screens/signup/signup2.dart'; 
 // NOTE: You will need to import your sign-in page here.
 // import 'package:healio_version_2/Screens/PatientSection/signin/signin.dart'; // Example path
