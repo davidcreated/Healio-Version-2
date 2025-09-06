@@ -89,7 +89,7 @@ class PatientSigninController extends GetxController
         
       case Role.patient:
         // Navigate to patient signup page
-        Get.offAllNamed(AppRoutes.SignUp);
+        Get.offAllNamed(AppRoutes.patientsigninpage);
         _showSuccessSnackbar('Patient Selected', 'Redirecting to patient registration...');
         break;
         

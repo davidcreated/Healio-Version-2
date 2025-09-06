@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:healio_version_2/Screens/onboarding/splash2.dart';
+import 'package:healio_version_2/Screens/Generalonboarding/splash2.dart';
 import 'package:healio_version_2/core/constants/appcolors.dart';
 import 'package:healio_version_2/core/constants/appdurations.dart';
 import 'package:healio_version_2/core/constants/appsizes.dart';

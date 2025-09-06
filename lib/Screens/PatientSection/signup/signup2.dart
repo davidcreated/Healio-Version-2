@@ -632,7 +632,7 @@ class PatientProfileCompletionPage extends StatelessWidget {
     String? Function(String?)? validator,
   }) {
     return DropdownButtonFormField<String>(
-      value: value,
+      initialValue: value,
       decoration: _buildInputDecoration(
         labelText: label,
         hintText: hint,

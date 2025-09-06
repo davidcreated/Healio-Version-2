@@ -94,13 +94,6 @@ class _PatientSignupPageState extends State<PatientSignupPage> {
   }
 
   
-  /// Page title header
-  Widget _buildPageHeader() {
-    return const Text(
-      'Create Account',
-      style: AppTextStyles.createAccountTitle,
-    );
-  }
 
   /// All form input fields
   Widget _buildFormFields(SignupController controller) {

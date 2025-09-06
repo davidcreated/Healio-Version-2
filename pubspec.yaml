@@ -82,6 +82,14 @@ dev_dependencies:
   build_runner: ^2.4.11
   json_serializable: ^6.9.0
   json_annotation: ^4.9.0
+  flutter_launcher_icons: ^0.14.4
+
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "lib/assets/icons/logo.png"
+
 
 flutter:
   uses-material-design: true
@@ -94,6 +102,7 @@ flutter:
     - lib/assets/images/doctors/
     - lib/assets/vectors/
     - lib/assets/images/
+    - lib/assets/icons/
 
   fonts:
     - family: Notosans

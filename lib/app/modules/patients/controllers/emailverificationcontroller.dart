@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:healio_version_2/Screens/signup/signup2.dart';
+import 'package:healio_version_2/Screens/PatientSection/signup/signup2.dart';
 
 class EmailVerifiedController extends GetxController {
   // Loading state for navigation

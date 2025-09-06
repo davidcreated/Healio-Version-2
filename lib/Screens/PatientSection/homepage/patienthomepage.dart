@@ -1,11 +1,15 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:healio_version_2/Screens/PatientSection/homepage/browsedoctors.dart';
+import 'package:healio_version_2/Screens/PatientSection/homepage/prescriptionscreen.dart';
 import 'package:healio_version_2/app/modules/patients/controllers/home_controller.dart';
 import 'package:healio_version_2/shared/widgets/doctor_card.dart';
 import 'package:healio_version_2/shared/widgets/home_icon_button.dart';
 
+// Import your page files here - uncomment and update paths as needed
+// import 'package:healio_version_2/app/modules/doctors/views/doctors_page.dart';
+// import 'package:healio_version_2/app/modules/prescriptions/views/prescriptions_page.dart';
+// import 'package:healio_version_2/app/modules/profile/views/profile_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -14,6 +18,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     // Initialize GetX controller
     final HomeController controller = Get.put(HomeController());
+    // Set current page index to 0 (Home) when this page loads
+    controller.selectedBottomNavIndex.value = 0;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -382,12 +388,14 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  /// Builds bottom navigation bar with GetX state management
+  /// Builds bottom navigation bar with proper navigation logic
   Widget _buildBottomNavigationBar(HomeController controller) {
     return Obx(() => BottomNavigationBar(
       currentIndex: controller.selectedBottomNavIndex.value,
       onTap: (index) {
+        // Update the controller's selected index
         controller.onBottomNavTap(index);
+        // Handle navigation
         _handleBottomNavigation(index);
       },
       selectedItemColor: const Color(0xFF007F67),
@@ -497,28 +505,66 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  /// Handles bottom navigation actions
+  /// Handles bottom navigation with proper navigation logic
   void _handleBottomNavigation(int index) {
-    // Add navigation logic based on index
     switch (index) {
       case 0:
-        // Home
+        // Home - Already on home page, no navigation needed
+        // Just update the index in controller if needed
         break;
+        
       case 1:
-        // Doctors
-        //NavigationHelper.navigateWithSlideTransition(const DoctorsWidget());
+        // Doctors - Navigate to Doctors/Browse Doctors page
+        Get.to(
+          () => const Browsedoctors(),
+          transition: Transition.rightToLeftWithFade,
+          duration: const Duration(milliseconds: 300),
+        );
         break;
+        
       case 2:
-        // Prescriptions
-        // NavigationHelper.navigateWithSlideTransition(PrescriptionsPage());
+        // Prescriptions - Navigate to Prescriptions page
+        // Uncomment and update with your actual prescriptions page
+        Get.to(
+          () => const Prescriptionpage(),
+          transition: Transition.rightToLeftWithFade,
+          duration: const Duration(milliseconds: 300),
+        );
+
+        // Temporary fallback - show snackbar until prescriptions page is ready
+        Get.snackbar(
+          'Navigation',
+          'Prescriptions page - Coming Soon!',
+          snackPosition: SnackPosition.BOTTOM,
+          duration: const Duration(seconds: 2),
+          backgroundColor: const Color(0xFF007F67),
+          colorText: Colors.white,
+        );
         break;
+        
       case 3:
-        // Profile
-        // NavigationHelper.navigateWithSlideTransition(ProfilePage());
+        // Profile - Navigate to Profile page
+        // Uncomment and update with your actual profile page
+        // Get.to(
+        //   () => const ProfilePage(),
+        //   transition: Transition.rightToLeftWithFade,
+        //   duration: const Duration(milliseconds: 300),
+        // );
+        
+        // Temporary fallback - show snackbar until profile page is ready
+        Get.snackbar(
+          'Navigation',
+          'Profile page - Coming Soon!',
+          snackPosition: SnackPosition.BOTTOM,
+          duration: const Duration(seconds: 2),
+          backgroundColor: const Color(0xFF007F67),
+          colorText: Colors.white,
+        );
         break;
+        
       default:
+        // Invalid index - should not happen
         break;
     }
   }
-
 }

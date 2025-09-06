@@ -3,7 +3,7 @@
 /// import 'package:flutter/material.dart';
 import 'package:get/get.dart'; // ✅ Added GetX
 import 'package:flutter/material.dart';
-import 'package:healio_version_2/Screens/signup/signup.dart';
+import 'package:healio_version_2/Screens/PatientSection/signup/signup.dart';
 import 'package:healio_version_2/core/constants/appdurations.dart';
 
 enum Role { none, doctor, patient }

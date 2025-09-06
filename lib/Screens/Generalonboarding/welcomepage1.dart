@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:healio_version_2/Screens/onboarding/welcomepage2.dart';
+import 'package:healio_version_2/Screens/Generalonboarding/welcomepage2.dart';
 import 'package:healio_version_2/app/routes/approutes.dart';
 import 'package:healio_version_2/core/constants/appcolors.dart';
 import 'package:healio_version_2/core/constants/appsizes.dart';
@@ -112,7 +112,7 @@ class WelcomePage1 extends StatelessWidget {
         // Add error handling for missing images
         errorBuilder: (context, error, stackTrace) {
           return Container(
-            color: AppColors.primaryAccent ?? Colors.blue.shade100,
+            color: AppColors.primaryAccent,
             child: const Center(
               child: Icon(
                 Icons.image_not_supported,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 // NOTE: Make sure these paths point to your actual page files.
-import 'package:healio_version_2/Screens/signup/signup2.dart'; 
+import 'package:healio_version_2/Screens/PatientSection/signup/signup2.dart'; 
 // NOTE: You will need to import your sign-in page here.
 // import 'package:healio_version_2/Screens/PatientSection/signin/signin.dart'; // Example path
 
@@ -95,23 +95,7 @@ class SignupController extends GetxController {
     Get.offAll(() => const PatientProfileCompletionPage());
   }
 
-  /// Simulate registration API call (replace with actual API integration)
-  Future<bool> _simulateRegistration(Map<String, String> userData) async {
-    await Future.delayed(const Duration(seconds: 1));
-    debugPrint('Registering user with data: $userData');
-    return true; // Simulate success
-  }
 
-  /// Clear all form fields after successful registration
-  void _clearForm() {
-    firstnameController.clear();
-    lastnameController.clear();
-    usernameController.clear();
-    emailController.clear();
-    passwordController.clear();
-    confirmPasswordController.clear();
-    _agreeToTerms.value = false;
-  }
 
   /// Navigate to sign in page
   void navigateToSignIn() {
@@ -121,35 +105,7 @@ class SignupController extends GetxController {
     Get.back(); // A simple back navigation is often sufficient here.
   }
 
-  /// Show success snackbar with green theme
-  void _showSuccessSnackbar(String title, String message) {
-    Get.snackbar(
-      title,
-      message,
-      snackPosition: SnackPosition.TOP,
-      backgroundColor: Colors.green.shade600,
-      colorText: Colors.white,
-      duration: const Duration(seconds: 4),
-      margin: const EdgeInsets.all(16),
-      borderRadius: 8,
-      icon: const Icon(Icons.check_circle, color: Colors.white),
-    );
-  }
 
-  /// Show error snackbar with red theme
-  void _showErrorSnackbar(String title, String message) {
-    Get.snackbar(
-      title,
-      message,
-      snackPosition: SnackPosition.TOP,
-      backgroundColor: Colors.red.shade600,
-      colorText: Colors.white,
-      duration: const Duration(seconds: 4),
-      margin: const EdgeInsets.all(16),
-      borderRadius: 8,
-      icon: const Icon(Icons.error_outline, color: Colors.white),
-    );
-  }
 
   /// Clean up controllers when controller is destroyed
   @override

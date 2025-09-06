@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "153686730826",
+    "project_id": "healioversion2",
+    "storage_bucket": "healioversion2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:153686730826:android:f72b3fbf1c6d0581399eb3",
+        "android_client_info": {
+          "package_name": "com.example.healio_version_2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBjA2MkLplVAkzFuIWmL8JUlJ2tABSKe8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

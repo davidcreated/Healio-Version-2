@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:healio_version_2/app/routes/approutes.dart'; 
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+
+void main() async {
+   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(); // no firebase_options.dart here
   runApp(const MainApp());
 }
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:healio_version_2/Screens/signin/patientsignin.dart';
-import 'package:healio_version_2/Screens/signup/patientsignup.dart';
+import 'package:healio_version_2/Screens/PatientSection/signin/patientsignin.dart';
+import 'package:healio_version_2/Screens/PatientSection/signup/patientsignup.dart';
 import 'package:healio_version_2/core/constants/appcolors.dart';
 import 'package:healio_version_2/core/constants/appdurations.dart';
 import 'package:healio_version_2/core/constants/appsizes.dart';

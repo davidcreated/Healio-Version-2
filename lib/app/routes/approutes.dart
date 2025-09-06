@@ -1,16 +1,19 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:healio_version_2/Screens/PatientSection/homepage/browsedoctors.dart';
 import 'package:healio_version_2/Screens/PatientSection/homepage/patienthomepage.dart';
-import 'package:healio_version_2/Screens/signup/patientsignup.dart';
-import 'package:healio_version_2/Screens/signup/signup.dart';
-import 'package:healio_version_2/Screens/signup/signup2.dart';
+import 'package:healio_version_2/Screens/PatientSection/homepage/prescriptionscreen.dart';
+import 'package:healio_version_2/Screens/PatientSection/signin/signin.dart';
+import 'package:healio_version_2/Screens/PatientSection/signup/patientsignup.dart';
+import 'package:healio_version_2/Screens/PatientSection/signup/signup.dart';
+import 'package:healio_version_2/Screens/PatientSection/signup/signup2.dart';
 import 'package:healio_version_2/Screens/PatientSection/verification/emailverification.dart';
 import 'package:healio_version_2/Screens/PatientSection/verification/otpverification.dart';
 
-import 'package:healio_version_2/Screens/onboarding/splash2.dart';
-import 'package:healio_version_2/Screens/onboarding/splashpage1.dart';
-import 'package:healio_version_2/Screens/onboarding/splashpage3.dart';
-import 'package:healio_version_2/Screens/onboarding/welcomepage1.dart';
-import 'package:healio_version_2/Screens/onboarding/welcomepage2.dart';
+import 'package:healio_version_2/Screens/Generalonboarding/splash2.dart';
+import 'package:healio_version_2/Screens/Generalonboarding/splashpage1.dart';
+import 'package:healio_version_2/Screens/Generalonboarding/splashpage3.dart';
+import 'package:healio_version_2/Screens/Generalonboarding/welcomepage1.dart';
+import 'package:healio_version_2/Screens/Generalonboarding/welcomepage2.dart';
 
 
 class AppRoutes {
@@ -27,8 +30,9 @@ class AppRoutes {
  static const String emailverification = '/emailverification';
 static const String otpVerification = '/otpverification';
 static const String patienthomepage = '/patienthomepage';
-
-
+static const String browsedoctors = '/browsedoctorspage';
+static const String patientsigninpage = '/patientsigninpage';
+static const String prescriptionpage = '/prescriptionpage';
  
 
   // --- Route Pages ---
@@ -77,9 +81,18 @@ GetPage(
     name: patienthomepage,
     page: () => const HomePage(),
   ),
-
-
-
+GetPage(
+    name: browsedoctors,
+    page: () => const Browsedoctors(),
+  ),
+GetPage(
+    name: patientsigninpage,
+    page: () => const PatientSignInPage(),
+  ),
+GetPage(
+    name: prescriptionpage,
+    page: () => const Prescriptionpage(),
+  ),
 ];
 
 
