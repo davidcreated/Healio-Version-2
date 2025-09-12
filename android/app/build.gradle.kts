@@ -35,6 +35,8 @@ android {
             isShrinkResources = false
         }
     }
+    // ADD THIS PART ⬇⬇⬇
+   
 }
 
 flutter {

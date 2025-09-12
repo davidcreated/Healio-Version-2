@@ -373,7 +373,7 @@ class _RoleSelectionButton extends StatelessWidget {
               AnimatedDefaultTextStyle(
                 duration: AppDurations.roleSelectionAnimationDuration,
                 style: AppTextStyles.roleSelectionButtonTextStyle.copyWith(
-                  color: isSelected ? Colors.white : Colors.black,
+                  color: isSelected ? Colors.black : Colors.black,
                   fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                 ),
                 child: Text(label),

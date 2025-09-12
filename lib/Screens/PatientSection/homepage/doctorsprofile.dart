@@ -10,8 +10,8 @@ import 'package:healio_version_2/app/modules/patients/controllers/doctorprofilec
 
 /// Doctor Profile Page - Matches the provided UI design exactly
 /// Uses GetX for state management and clean architecture principles
-class DoctorProfilePage extends StatelessWidget {
-  const DoctorProfilePage({super.key});
+class DoctorProfile extends StatelessWidget {
+  const DoctorProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -62,13 +62,15 @@ class DoctorProfilePage extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: const Color(0xFF2735FD),
+                color: const Color(0xFF002180),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: const Icon(
-                Icons.arrow_back_ios,
-                color: Colors.white,
-                size: 20,
+              child: Center(
+                child: const Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                  size: 18,
+                ),
               ),
             ),
           ),

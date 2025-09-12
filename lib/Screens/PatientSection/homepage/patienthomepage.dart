@@ -5,6 +5,7 @@ import 'package:healio_version_2/Screens/PatientSection/homepage/prescriptionscr
 import 'package:healio_version_2/app/modules/patients/controllers/home_controller.dart';
 import 'package:healio_version_2/shared/widgets/doctor_card.dart';
 import 'package:healio_version_2/shared/widgets/home_icon_button.dart';
+import 'package:iconsax/iconsax.dart';
 
 // Import your page files here - uncomment and update paths as needed
 // import 'package:healio_version_2/app/modules/doctors/views/doctors_page.dart';
@@ -86,7 +87,9 @@ class HomePage extends StatelessWidget {
           _buildDrawerItem(
             icon: 'lib/assets/vectors/mental1.png',
             title: 'Mental Health Support',
-            onTap: (){}
+            onTap: (){
+              Get.toNamed('/mentalhealth');
+            }
           ),
           const SizedBox(height: 20),
           _buildDivider(),
@@ -251,7 +254,7 @@ class HomePage extends StatelessWidget {
   /// Builds horizontal scrollable options
   Widget _buildHorizontalOptions() {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
       child: SizedBox(
         height: 90,
         child: ListView(
@@ -283,7 +286,9 @@ class HomePage extends StatelessWidget {
             HomeIconButton(
               image: 'lib/assets/vectors/mental health.png',
               label: 'Mental Health',
-              onTap: () {}
+              onTap: () {
+                Get.toNamed('/mentalhealth');
+              }
             ),
           ],
         ),
@@ -402,20 +407,20 @@ class HomePage extends StatelessWidget {
       unselectedItemColor: Colors.grey,
       showUnselectedLabels: true,
       type: BottomNavigationBarType.fixed,
-      items: const [
+      items: [
         BottomNavigationBarItem(
           icon: ImageIcon(AssetImage('lib/assets/images/home.png')),
           label: 'Home',
         ),
-        BottomNavigationBarItem(
+        const BottomNavigationBarItem(
           icon: ImageIcon(AssetImage('lib/assets/images/doctor.png')),
           label: 'Doctors',
         ),
-        BottomNavigationBarItem(
+        const BottomNavigationBarItem(
           icon: ImageIcon(AssetImage('lib/assets/images/prescription.png')),
           label: 'Prescriptions',
         ),
-        BottomNavigationBarItem(
+        const BottomNavigationBarItem(
           icon: ImageIcon(AssetImage('lib/assets/images/profile.png')),
           label: 'Profile',
         ),

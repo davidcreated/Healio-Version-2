@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:healio_version_2/Screens/PatientSection/homepage/patienthomepage.dart';
 import 'package:healio_version_2/Screens/PatientSection/homepage/prescriptionscreen.dart';
-import 'package:healio_version_2/app/modules/patients/controllers/nearbydoctorscontrollers.dart';
+import 'package:healio_version_2/app/modules/patients/controllers/browsedoctorscontrollers.dart.dart';
 
 // Import your page files here - uncomment and update paths as needed
 // import 'package:healio_version_2/Screens/PatientSection/homepage/homepage.dart';
@@ -14,7 +14,7 @@ class Browsedoctors extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(NearbyDoctorsController());
+    final controller = Get.put(BrowseDoctorsController());
     // Set current page index to 1 (Doctors) when this page loads
     controller.selectedIndex.value = 1;
     
@@ -84,9 +84,9 @@ class Browsedoctors extends StatelessWidget {
                           ),
                           child: IconButton(
                             icon: Icon(
-                              Icons.arrow_back_ios_new,
+                              Icons.arrow_back,
                               color: Colors.white,
-                              size: isTablet ? 20 : 16,
+                              size: isTablet ? 20 : 20,
                             ),
                             onPressed: controller.goBack,
                             padding: EdgeInsets.zero,
@@ -415,7 +415,7 @@ class Browsedoctors extends StatelessWidget {
     }
   }
 
-  _card sarahudy(bool isTablet, double horizontalPadding, NearbyDoctorsController controller) {
+  _card sarahudy(bool isTablet, double horizontalPadding, BrowseDoctorsController controller) {
     return _card(
               imagePath: 'lib/assets/images/doctors/Doctor img.png',
               name: 'Dr. Sarah Udy',
@@ -431,7 +431,7 @@ class Browsedoctors extends StatelessWidget {
             );
   }
 
-  _card sarahjohnson(bool isTablet, double horizontalPadding, NearbyDoctorsController controller) {
+  _card sarahjohnson(bool isTablet, double horizontalPadding, BrowseDoctorsController controller) {
     return _card(
               imagePath: 'lib/assets/images/doctors/sarah.png',
               name: 'Dr. Sarah Johnson',
@@ -447,7 +447,7 @@ class Browsedoctors extends StatelessWidget {
             );
   }
 
-  _card nuurdeen(bool isTablet, double horizontalPadding, NearbyDoctorsController controller) {
+  _card nuurdeen(bool isTablet, double horizontalPadding, BrowseDoctorsController controller) {
     return _card(
             imagePath: 'lib/assets/images/doctors/nuurdeen.png',
             name: 'Dr. Nuurdeen Ahmad',
@@ -463,7 +463,7 @@ class Browsedoctors extends StatelessWidget {
           );
   }
 
-  _card doctordetailscard(bool isTablet, double horizontalPadding, NearbyDoctorsController controller) {
+  _card doctordetailscard(bool isTablet, double horizontalPadding, BrowseDoctorsController controller) {
     return _card(
               imagePath: 'lib/assets/images/doctors/nuurdeen.png',
               name: 'Dr. Nuurdeen Ahmad',

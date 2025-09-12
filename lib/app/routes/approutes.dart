@@ -1,7 +1,15 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:healio_version_2/Screens/PatientSection/homepage/PreliminaryQuestionPage.dart';
 import 'package:healio_version_2/Screens/PatientSection/homepage/browsedoctors.dart';
+import 'package:healio_version_2/Screens/PatientSection/homepage/chat.dart';
+import 'package:healio_version_2/Screens/PatientSection/homepage/checkoutpage.dart';
+import 'package:healio_version_2/Screens/PatientSection/homepage/doctorsappointmentpage.dart';
+import 'package:healio_version_2/Screens/PatientSection/homepage/doctorsprofile.dart';
+import 'package:healio_version_2/Screens/PatientSection/homepage/mentalhealth.dart';
 import 'package:healio_version_2/Screens/PatientSection/homepage/patienthomepage.dart';
+import 'package:healio_version_2/Screens/PatientSection/homepage/paymentmethod.dart';
 import 'package:healio_version_2/Screens/PatientSection/homepage/prescriptionscreen.dart';
+import 'package:healio_version_2/Screens/PatientSection/homepage/videocall.dart';
 import 'package:healio_version_2/Screens/PatientSection/signin/signin.dart';
 import 'package:healio_version_2/Screens/PatientSection/signup/patientsignup.dart';
 import 'package:healio_version_2/Screens/PatientSection/signup/signup.dart';
@@ -16,6 +24,7 @@ import 'package:healio_version_2/Screens/Generalonboarding/welcomepage1.dart';
 import 'package:healio_version_2/Screens/Generalonboarding/welcomepage2.dart';
 
 
+
 class AppRoutes {
 
   AppRoutes._();
@@ -26,78 +35,110 @@ class AppRoutes {
   static const String welcomePage1 = '/welcomePage1';
   static const String welcomePage2 = '/welcomePage2';
   static const String patientSignUp = '/patientSignUp';
- static const String SignUp = '/SignUp';
- static const String emailverification = '/emailverification';
-static const String otpVerification = '/otpverification';
-static const String patienthomepage = '/patienthomepage';
-static const String browsedoctors = '/browsedoctorspage';
-static const String patientsigninpage = '/patientsigninpage';
-static const String prescriptionpage = '/prescriptionpage';
- 
+  static const String SignUp = '/SignUp';
+  static const String SignUp2 = '/SignUp2';
+  static const String emailverification = '/emailverification';
+  static const String otpVerification = '/otpverification';
+  static const String patienthomepage = '/patienthomepage';
+  static const String browsedoctors = '/browsedoctorspage';
+  static const String patientsigninpage = '/patientsigninpage';
+  static const String prescriptionpage = '/prescriptionpage';
+  static const String doctorsprofile = '/dcotorsprofile';
+  static const String doctorsappointment = '/dcotorsappointment';
+  static const String checkout = '/checkout';
+  static const String paymentselectionpage = '/paymentselectionpage';
+  static const String mentalhealth = '/mentalhealth';
+  static const String chatpage = '/chatpage';
+  static const String videocallpage = '/videocallpage';
+  static const String preliminaryQuestions = '/preliminary-questions';
 
   // --- Route Pages ---
-static final List<GetPage> pages = [
-  GetPage(
-    name: splashPage1,
-    page: () => const splashpage1(),
-  ),
-  GetPage(
-    name: splashPage2,
-    page: () => const Splashpage2(),
-  ),
-  GetPage(
-    name: splashPage3,
-    page: () => const Splashpage3(),
-  ),
-  GetPage(
-    name: welcomePage1,
-    page: () => const WelcomePage1(),
-  ),
-  GetPage(
-    name: welcomePage2,
-    page: () => const WelcomePage2(),
-  ),
-  GetPage(
-    name: patientSignUp,
-    page: () => const Patientsignup(),
-  ),
-   GetPage(
-    name: SignUp,
-    page: () => const PatientSignupPage(),
-  ),
-  GetPage(
-    name: SignUp,
-    page: () => const PatientProfileCompletionPage(),
-  ),
-  GetPage(
-    name: emailverification,
-    page: () => const EmailVerificationPage(),
-  ),
-GetPage(
-    name: otpVerification,
-    page: () => const OtpVerification(),
-  ),
-  GetPage(
-    name: patienthomepage,
-    page: () => const HomePage(),
-  ),
-GetPage(
-    name: browsedoctors,
-    page: () => const Browsedoctors(),
-  ),
-GetPage(
-    name: patientsigninpage,
-    page: () => const PatientSignInPage(),
-  ),
-GetPage(
-    name: prescriptionpage,
-    page: () => const Prescriptionpage(),
-  ),
-];
+  static final List<GetPage> pages = [
+    GetPage(
+      name: splashPage1,
+      page: () => const splashpage1(),
+    ),
+    GetPage(
+      name: splashPage2,
+      page: () => const Splashpage2(),
+    ),
+    GetPage(
+      name: splashPage3,
+      page: () => const Splashpage3(),
+    ),
+    GetPage(
+      name: welcomePage1,
+      page: () => const WelcomePage1(),
+    ),
+    GetPage(
+      name: welcomePage2,
+      page: () => const WelcomePage2(),
+    ),
+    GetPage(
+      name: patientSignUp,
+      page: () => const Patientsignup(),
+    ),
+    GetPage(
+      name: SignUp,
+      page: () => const PatientSignupPage(),
+    ),
+    GetPage(
+      name: SignUp2,
+      page: () => const PatientProfileCompletionPage(),
+    ),
+    GetPage(
+      name: emailverification,
+      page: () => const EmailVerificationPage(),
+    ),
+    GetPage(
+      name: otpVerification,
+      page: () => const OtpVerification(),
+    ),
+    GetPage(
+      name: patienthomepage,
+      page: () => const HomePage(),
+    ),
+    GetPage(
+      name: browsedoctors,
+      page: () => const Browsedoctors(),
+    ),
+    GetPage(
+      name: patientsigninpage,
+      page: () => const PatientSignInPage(),
+    ),
+    GetPage(
+      name: prescriptionpage,
+      page: () => const Prescriptionpage(),
+    ),
+    GetPage(
+      name: doctorsprofile,
+      page: () => const DoctorProfile(),
+    ),
+    GetPage(
+      name: doctorsappointment,
+      page: () => const AppointmentBookingPage(),
+    ),
+    GetPage(
+      name: checkout,
+      page: () => const CheckoutPage(),
+    ),
+    GetPage(
+      name: paymentselectionpage,
+      page: () => const PaymentSelectionPage(),
+    ),
+    GetPage(
+      name: mentalhealth,
+      page: () => const MentalHealthResourcesPage(),
+    ),
+     GetPage(
+      name: chatpage,
+      page: () => const ChatPage(),
+    ),
+    GetPage(name: videocallpage, page: () => const VideoCallPage()),
 
-
-
-
-
-
-}
+    GetPage(
+      name: preliminaryQuestions,
+      page: () => const PreliminaryQuestionPage(),
+    ),
+  ];
+} 

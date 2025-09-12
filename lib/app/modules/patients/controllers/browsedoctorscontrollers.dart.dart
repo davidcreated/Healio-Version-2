@@ -1,9 +1,9 @@
 
 import 'package:get/get.dart';
-
+import 'package:healio_version_2/Screens/PatientSection/homepage/doctorsprofile.dart';
 
 // Controller for managing the state of the Nearby Doctors page
-class NearbyDoctorsController extends GetxController {
+class BrowseDoctorsController extends GetxController {
   var selectedIndex = 1.obs; // Doctors tab is selected by default
   
   // Method to handle tab selection
@@ -27,13 +27,15 @@ class NearbyDoctorsController extends GetxController {
     Get.snackbar('Specialization', '$specialization doctors');
   }
   
-  // Method to handle book appointment
+  // Method to handle book appointment - TEST VERSION
   void bookAppointment(String doctorName) {
-    Get.snackbar('Booking', 'Booking appointment with $doctorName');
+
+    Get.to(() => const DoctorProfile());
   }
-  
-  // Method to handle consult now
+  // Method to handle consult now - TEST VERSION
   void consultNow(String doctorName) {
-    Get.snackbar('Consult', 'Starting consultation with $doctorName');
+   
+    Get.to(() => const DoctorProfile());
   }
+
 }

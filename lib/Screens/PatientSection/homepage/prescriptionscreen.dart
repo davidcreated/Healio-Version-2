@@ -115,9 +115,9 @@ class Prescriptionpage extends StatelessWidget {
                   ),
                   child: IconButton(
                     icon: Icon(
-                      Icons.arrow_back_ios_new,
+                      Icons.arrow_back,
                       color: Colors.white,
-                      size: isTablet ? 20 : 16,
+                      size: isTablet ? 20 : 20,
                     ),
                     onPressed: () => Get.off(() => const HomePage()),
                     padding: EdgeInsets.zero,
@@ -143,7 +143,7 @@ class Prescriptionpage extends StatelessWidget {
           Positioned(
             left: horizontalPadding,
             right: horizontalPadding,
-            bottom: 15,
+            bottom: 40,
             child: Container(
               height: isTablet ? 56 : 48,
               constraints: BoxConstraints(
