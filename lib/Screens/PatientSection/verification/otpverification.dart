@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:healio_version_2/app/modules/patients/controllers/otpverificationcontroller.dart';
+import 'package:healio_version_2/app/modules/auth/controllers/otpverificationcontroller.dart';
 
 class OtpVerification extends StatelessWidget {
   const OtpVerification({super.key});

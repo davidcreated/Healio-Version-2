@@ -19,6 +19,7 @@ dependencies:
   # Local Storage
   get_storage: ^2.1.1
   shared_preferences: ^2.3.3
+  
 
   # Database
   sqflite: ^2.4.0

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:healio_version_2/app/modules/patients/controllers/paymentcontroller.dart';
+import 'package:healio_version_2/app/modules/payments/controllers/paymentcontroller.dart';
 
 // Remove local PaymentMethod enum and import the shared one
 
 /// Payment selection page widget
-class PaymentSelectionPage extends StatelessWidget {
-  const PaymentSelectionPage({super.key});
+class Consultationpaymentselectionpage extends StatelessWidget {
+  const Consultationpaymentselectionpage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +96,7 @@ class PaymentSelectionPage extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           const Text(
-            'Choose how you\'d like to pay for your appointment',
+            'Choose how you\'d like to pay for your consultation',
             style: TextStyle(
               fontSize: 16,
               color: Color(0xFF686868),

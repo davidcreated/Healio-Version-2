@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:healio_version_2/app/modules/patients/controllers/reviewcontroller.dart';
+import 'package:healio_version_2/app/modules/chat/controllers/reviewcontroller.dart';
 
 /// Patient Ratings & Reviews page widget
 /// Displays doctor reviews with overall rating and individual review cards

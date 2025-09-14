@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:healio_version_2/app/modules/patients/controllers/signupcontroller.dart';
+import 'package:healio_version_2/app/modules/auth/controllers/signupcontroller.dart';
 import 'package:healio_version_2/core/constants/appcolors.dart';
 import 'package:healio_version_2/core/constants/appsizes.dart';
 import 'package:healio_version_2/core/constants/apptextstyles.dart';

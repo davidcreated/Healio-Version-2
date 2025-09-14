@@ -2,13 +2,17 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:healio_version_2/Screens/PatientSection/homepage/PreliminaryQuestionPage.dart';
 import 'package:healio_version_2/Screens/PatientSection/homepage/browsedoctors.dart';
 import 'package:healio_version_2/Screens/PatientSection/homepage/chat.dart';
-import 'package:healio_version_2/Screens/PatientSection/homepage/checkoutpage.dart';
-import 'package:healio_version_2/Screens/PatientSection/homepage/doctorsappointmentpage.dart';
-import 'package:healio_version_2/Screens/PatientSection/homepage/doctorsprofile.dart';
+import 'package:healio_version_2/Screens/PatientSection/homepage/appointmentcheckoutpage.dart';
+import 'package:healio_version_2/Screens/PatientSection/homepage/appointmentpage.dart';
+import 'package:healio_version_2/Screens/PatientSection/homepage/bookappointment.dart';
+import 'package:healio_version_2/Screens/PatientSection/homepage/consultationpaymentselectionpage.dart';
+import 'package:healio_version_2/Screens/PatientSection/homepage/consultcheckutpage.dart';
+import 'package:healio_version_2/Screens/PatientSection/homepage/consultpage.dart';
 import 'package:healio_version_2/Screens/PatientSection/homepage/mentalhealth.dart';
 import 'package:healio_version_2/Screens/PatientSection/homepage/patienthomepage.dart';
-import 'package:healio_version_2/Screens/PatientSection/homepage/paymentmethod.dart';
+import 'package:healio_version_2/Screens/PatientSection/homepage/appointmentpaymentmethod.dart';
 import 'package:healio_version_2/Screens/PatientSection/homepage/prescriptionscreen.dart';
+import 'package:healio_version_2/Screens/PatientSection/homepage/therapistconsult.dart';
 import 'package:healio_version_2/Screens/PatientSection/homepage/videocall.dart';
 import 'package:healio_version_2/Screens/PatientSection/signin/signin.dart';
 import 'package:healio_version_2/Screens/PatientSection/signup/patientsignup.dart';
@@ -41,12 +45,16 @@ class AppRoutes {
   static const String otpVerification = '/otpverification';
   static const String patienthomepage = '/patienthomepage';
   static const String browsedoctors = '/browsedoctorspage';
+  static const String therapistconsult = '/therapistconsult';
   static const String patientsigninpage = '/patientsigninpage';
   static const String prescriptionpage = '/prescriptionpage';
   static const String doctorsprofile = '/dcotorsprofile';
   static const String doctorsappointment = '/dcotorsappointment';
-  static const String checkout = '/checkout';
-  static const String paymentselectionpage = '/paymentselectionpage';
+  static const String consultbookingpage = '/consultbookingpage';
+  static const String appointmentcheckout = '/appointmentcheckout';
+   static const String consultationcheckout = '/consultationcheckout';
+  static const String appointmentpaymentselectionpage = '/appointmentpaymentselectionpage';
+   static const String consultationpaymentselectionpage = '/consultationpaymentselectionpage';
   static const String mentalhealth = '/mentalhealth';
   static const String chatpage = '/chatpage';
   static const String videocallpage = '/videocallpage';
@@ -112,19 +120,28 @@ class AppRoutes {
     ),
     GetPage(
       name: doctorsprofile,
-      page: () => const DoctorProfile(),
+      page: () => const Bookappointment(),
     ),
     GetPage(
       name: doctorsappointment,
       page: () => const AppointmentBookingPage(),
     ),
     GetPage(
-      name: checkout,
-      page: () => const CheckoutPage(),
+      name: appointmentcheckout,
+      page: () => const AppointmentCheckoutPage(),
+    ),
+   
+     GetPage(
+      name: consultationcheckout,
+      page: () => const ConsultationCheckoutPage(),
     ),
     GetPage(
-      name: paymentselectionpage,
-      page: () => const PaymentSelectionPage(),
+      name: appointmentpaymentselectionpage,
+      page: () => const AppointmentPaymentSelectionPage(),
+    ),
+    GetPage(
+      name: consultationpaymentselectionpage,
+      page: () => const Consultationpaymentselectionpage(),
     ),
     GetPage(
       name: mentalhealth,
@@ -139,6 +156,14 @@ class AppRoutes {
     GetPage(
       name: preliminaryQuestions,
       page: () => const PreliminaryQuestionPage(),
+    ),
+     GetPage(
+      name: therapistconsult,
+      page: () => const Therapistconsult(),
+    ),
+    GetPage(
+      name: consultbookingpage,
+      page: () => const ConsultBookingPage(),
     ),
   ];
 } 

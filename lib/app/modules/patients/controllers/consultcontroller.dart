@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:healio_version_2/Screens/PatientSection/homepage/appointmentpage.dart';
+import 'package:healio_version_2/Screens/PatientSection/homepage/consultcheckutpage.dart';
 import 'package:healio_version_2/Screens/PatientSection/homepage/reviewpage.dart';
 
 /// Controller for Doctor Profile Page
 /// Manages doctor data, ratings, availability, and user interactions
-class DoctorProfileController extends GetxController {
+class ConsultController extends GetxController {
   
   // DYNAMIC DOCTOR INFORMATION - Will be set based on passed arguments
   late String doctorName;
@@ -28,8 +29,7 @@ class DoctorProfileController extends GetxController {
   // ABOUT SECTION
   late String aboutText;
   
-  // CONSULTATION PRICING
-
+  
   
   // REACTIVE STATE VARIABLES
   final _isLoading = false.obs;
@@ -188,7 +188,7 @@ class DoctorProfileController extends GetxController {
       
       // Navigate to payment/checkout page
       // TODO: Replace with your actual payment page
-      Get.to(() => const AppointmentBookingPage());
+      Get.to(() => const ConsultationCheckoutPage());
       
      
       
@@ -245,6 +245,6 @@ class DoctorProfileController extends GetxController {
   
   /// Format consultation fee for display
   String getFormattedConsultationFee() {
-    return '${bookingType == 'appointment' ? 'Book appointment' : 'Consult now'} ';
+    return '${bookingType == 'appointment' ? '  Consult Now' : 'Consult now'}';
   }
 }

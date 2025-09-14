@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CheckoutController extends GetxController {
+class Consultationcheckoucontroller extends GetxController {
   // Simple reactive variables with default values
   final RxBool isProcessingPayment = false.obs;
   final RxInt selectedDurationHours = 2.obs;
@@ -65,7 +65,7 @@ class CheckoutController extends GetxController {
       );
 
       // Navigate to next page (you can replace with your actual route)
-       Get.toNamed('/paymentselectionpage');
+       Get.toNamed('/consultationpaymentselectionpage');
     });
   }
 

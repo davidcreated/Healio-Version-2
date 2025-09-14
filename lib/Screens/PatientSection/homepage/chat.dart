@@ -1,8 +1,9 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 
-import 'package:healio_version_2/app/modules/patients/controllers/chatcontrollers.dart';
+import 'package:healio_version_2/app/modules/chat/controllers/chatcontrollers.dart';
 
 // Import your controller file
 // import 'chat_controller.dart';
@@ -15,7 +16,7 @@ class ChatPage extends StatelessWidget {
     final ChatController controller = Get.put(ChatController());
 
     return Scaffold(
-      backgroundColor: const Color(0xFFFFFFFF),
+      backgroundColor: const Color(0xFFF0F2F5),
       appBar: _buildAppBar(controller),
       body: Column(
         children: [
@@ -40,13 +41,7 @@ class ChatPage extends StatelessWidget {
       elevation: 1,
       backgroundColor: Colors.white,
       leading: IconButton(
-        icon: Container(
-           padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: const Color(0xFF002180),
-                borderRadius: BorderRadius.circular(8),
-              ),
-          child: const Icon(Icons.arrow_back, color: Colors.white)),
+        icon: const Icon(Icons.arrow_back, color: Color(0xFF002180)),
         onPressed: controller.goBack,
       ),
       title: Obx(() => Row(
@@ -96,7 +91,7 @@ class ChatPage extends StatelessWidget {
                     const Icon(
                       Icons.verified,
                       size: 16,
-                      color:const Color(0xFF002180),
+                      color: Colors.blue,
                     ),
                   ],
                 ),
@@ -125,14 +120,14 @@ class ChatPage extends StatelessWidget {
                     const Icon(
                       Icons.location_on,
                       size: 12,
-                      color: Color(0xff007F67),
+                      color: Colors.grey,
                     ),
                     const SizedBox(width: 2),
                     Text(
                       controller.doctorLocation.value,
                       style: const TextStyle(
                         fontSize: 12,
-                        color: Colors.black,
+                        color: Colors.grey,
                       ),
                     ),
                   ],
@@ -147,7 +142,7 @@ class ChatPage extends StatelessWidget {
         IconButton(
           icon: const Icon(
             Icons.phone,
-            color: Color(0xFF007F67),
+            color: Color(0xFF00C853),
             size: 24,
           ),
           onPressed: controller.startVoiceCall,
@@ -157,7 +152,7 @@ class ChatPage extends StatelessWidget {
         IconButton(
           icon: const Icon(
             Icons.videocam,
-            color: Color(0xFF007F67),
+            color: Color(0xFF00C853),
             size: 26,
           ),
           onPressed: controller.startVideoCall,

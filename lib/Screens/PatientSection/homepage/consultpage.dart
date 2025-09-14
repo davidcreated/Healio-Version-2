@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:healio_version_2/app/modules/patients/controllers/doctorprofilecontroller.dart';
+import 'package:healio_version_2/app/modules/patients/controllers/consultcontroller.dart';
+
 
 // TODO: Import your controller file
 // import 'package:your_app/controllers/doctor_profile_controller.dart';
@@ -10,14 +11,14 @@ import 'package:healio_version_2/app/modules/patients/controllers/doctorprofilec
 
 /// Doctor Profile Page - Matches the provided UI design exactly
 /// Uses GetX for state management and clean architecture principles
-class DoctorProfile extends StatelessWidget {
-  const DoctorProfile({super.key});
+class ConsultBookingPage extends StatelessWidget {
+  const ConsultBookingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     // Initialize controller with dependency injection
-    return GetBuilder<DoctorProfileController>(
-      init: DoctorProfileController(), // TODO: Replace with Get.find() if using dependency injection
+    return GetBuilder<ConsultController>(
+      init: ConsultController(), // TODO: Replace with Get.find() if using dependency injection
       builder: (controller) {
         return Scaffold(
           backgroundColor: const Color(0xFFF5F6FA),
@@ -38,8 +39,9 @@ class DoctorProfile extends StatelessWidget {
                   const SizedBox(height: 20),
                   _buildRatingsSection(controller),
                   const SizedBox(height: 32),
-                  _buildConsultButton(controller),
+                  _buildAppointButton(controller),
                   const SizedBox(height: 20),
+                  
                 ],
               ),
             ),
@@ -50,7 +52,7 @@ class DoctorProfile extends StatelessWidget {
   }
 
   /// App bar with back button and "Details" title
-  Widget _buildAppBar(DoctorProfileController controller) {
+  Widget _buildAppBar(ConsultController controller) {
     return Padding(
       padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
       child: Row(
@@ -89,7 +91,7 @@ class DoctorProfile extends StatelessWidget {
   }
 
   /// Doctor information card with image, name, specialization, and status
-  Widget _buildDoctorCard(DoctorProfileController controller) {
+  Widget _buildDoctorCard(ConsultController controller) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Container(
@@ -261,7 +263,7 @@ class DoctorProfile extends StatelessWidget {
   }
 
   /// About section with doctor's description
-  Widget _buildAboutSection(DoctorProfileController controller) {
+  Widget _buildAboutSection(ConsultController controller) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
@@ -290,7 +292,7 @@ class DoctorProfile extends StatelessWidget {
   }
 
   /// Statistics section with patients, experience, and reviews
-  Widget _buildStatsSection(DoctorProfileController controller) {
+  Widget _buildStatsSection(ConsultController controller) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Row(
@@ -360,7 +362,7 @@ class DoctorProfile extends StatelessWidget {
   }
 
   /// Availability section with navigation to booking
-  Widget _buildAvailabilitySection(DoctorProfileController controller) {
+  Widget _buildAvailabilitySection(ConsultController controller) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
@@ -409,7 +411,7 @@ class DoctorProfile extends StatelessWidget {
   }
 
   /// Ratings and reviews section
-  Widget _buildRatingsSection(DoctorProfileController controller) {
+  Widget _buildRatingsSection(ConsultController controller) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
@@ -487,7 +489,7 @@ class DoctorProfile extends StatelessWidget {
   }
 
   /// Consultation booking button
-  Widget _buildConsultButton(DoctorProfileController controller) {
+  Widget _buildAppointButton(ConsultController controller) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: SizedBox(

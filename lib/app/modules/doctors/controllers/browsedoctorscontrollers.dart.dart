@@ -1,6 +1,7 @@
 
 import 'package:get/get.dart';
-import 'package:healio_version_2/Screens/PatientSection/homepage/doctorsprofile.dart';
+import 'package:healio_version_2/Screens/PatientSection/homepage/bookappointment.dart';
+import 'package:healio_version_2/Screens/PatientSection/homepage/consultpage.dart';
 
 // Controller for managing the state of the Nearby Doctors page
 class BrowseDoctorsController extends GetxController {
@@ -30,12 +31,12 @@ class BrowseDoctorsController extends GetxController {
   // Method to handle book appointment - TEST VERSION
   void bookAppointment(String doctorName) {
 
-    Get.to(() => const DoctorProfile());
+    Get.to(() => const Bookappointment());
   }
   // Method to handle consult now - TEST VERSION
   void consultNow(String doctorName) {
    
-    Get.to(() => const DoctorProfile());
+    Get.to(() => const ConsultBookingPage());
   }
 
 }

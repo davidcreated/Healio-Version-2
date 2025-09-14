@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:healio_version_2/app/modules/patients/controllers/appointmentbookingcontroller.dart';
+import 'package:healio_version_2/app/modules/appointments/appointmentbookingcontroller.dart';
 
 /// Main Appointment Booking Page Widget
 class AppointmentBookingPage extends StatelessWidget {

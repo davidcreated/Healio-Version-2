@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:healio_version_2/app/modules/patients/controllers/signup2controller.dart';
+import 'package:healio_version_2/app/modules/auth/controllers/signup2controller.dart';
 import 'package:healio_version_2/app/routes/approutes.dart';
 
 // Define the primary color
@@ -140,7 +140,14 @@ class PatientProfileCompletionPage extends StatelessWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios, color: primaryColor),
+        icon: Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: const Color(0xFF002180),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: const Icon(Icons.arrow_back, color: Colors.white, size: 20),
+        ),
             onPressed: () => Get.back(),
           ),
           title: const FittedBox(

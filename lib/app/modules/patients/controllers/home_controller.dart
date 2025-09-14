@@ -3,7 +3,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:healio_version_2/app/modules/appointments/controllers/appointment.dart';
-import 'package:healio_version_2/app/modules/doctors/controllers/doctor.dart';
+import 'package:healio_version_2/models/doctor1.dart';
 // Import your models here
 // import '../models/doctor.dart';
 // import '../models/appointment.dart';
@@ -49,11 +49,11 @@ class HomeController extends GetxController {
   void _setGreeting() {
     final hour = DateTime.now().hour;
     if (hour < 12) {
-      greeting.value = 'Good morning,';
+      greeting.value = 'Good Morning,';
     } else if (hour < 17) {
-      greeting.value = 'Good afternoon,';
+      greeting.value = 'Good Afternoon,';
     } else {
-      greeting.value = 'Good evening,';
+      greeting.value = 'Good Evening,';
     }
   }
 

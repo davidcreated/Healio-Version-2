@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:healio_version_2/app/modules/patients/controllers/checkoutcontroller.dart';
+import 'package:healio_version_2/app/modules/payments/controllers/appointmentcheckoutcontroller.dart';
+import 'package:healio_version_2/app/modules/payments/controllers/consultationcheckoucontroller.dart';
 
 
-class CheckoutPage extends StatefulWidget {
-  const CheckoutPage({super.key});
+class ConsultationCheckoutPage extends StatefulWidget {
+  const ConsultationCheckoutPage({super.key});
 
   @override
-  State<CheckoutPage> createState() => _CheckoutPageState();
+  State<ConsultationCheckoutPage> createState() => _ConsultationCheckoutPageState();
 }
 
-class _CheckoutPageState extends State<CheckoutPage> {
+class _ConsultationCheckoutPageState extends State<ConsultationCheckoutPage> {
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(CheckoutController());
+    final controller = Get.put(Consultationcheckoucontroller());
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F6FA),
@@ -39,7 +40,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
     );
   }
 
-  Widget _buildAppBar(CheckoutController controller) {
+  Widget _buildAppBar(Consultationcheckoucontroller controller) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Row(
@@ -88,7 +89,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
     );
   }
 
-  Widget _buildAppointmentCard(CheckoutController controller) {
+  Widget _buildAppointmentCard(Consultationcheckoucontroller controller) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Container(
@@ -101,7 +102,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
         child: Column(
           children: [
             const Text(
-              'Appointment Scheduling',
+              'Consultation',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
@@ -455,7 +456,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
     );
   }
 
-  Widget _buildCheckoutButton(CheckoutController controller) {
+  Widget _buildCheckoutButton(Consultationcheckoucontroller controller) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Obx(() => SizedBox(
@@ -496,7 +497,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
     );
   }
 
-  Widget _buildPolicyLinks(CheckoutController controller) {
+  Widget _buildPolicyLinks(Consultationcheckoucontroller controller) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(

@@ -272,7 +272,7 @@ class AppointmentBookingController extends GetxController {
       colorText: Colors.white,
       duration: const Duration(seconds: 4),
     );
-      Get.toNamed('/checkout', arguments: {
+      Get.toNamed('/appointmentcheckout', arguments: {
         'doctorName': doctorName.value,
         'doctorSpecialization': doctorSpecialization.value,
         'doctorLocation': doctorLocation.value,

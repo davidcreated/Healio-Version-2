@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:healio_version_2/Screens/PatientSection/homepage/bookappointment.dart';
 import 'package:healio_version_2/Screens/PatientSection/homepage/browsedoctors.dart';
+import 'package:healio_version_2/Screens/PatientSection/homepage/consultpage.dart';
 import 'package:healio_version_2/Screens/PatientSection/homepage/prescriptionscreen.dart';
+import 'package:healio_version_2/Screens/PatientSection/homepage/profilepage.dart';
 import 'package:healio_version_2/app/modules/patients/controllers/home_controller.dart';
 import 'package:healio_version_2/shared/widgets/doctor_card.dart';
 import 'package:healio_version_2/shared/widgets/home_icon_button.dart';
-import 'package:iconsax/iconsax.dart';
+
 
 // Import your page files here - uncomment and update paths as needed
 // import 'package:healio_version_2/app/modules/doctors/views/doctors_page.dart';
@@ -63,15 +66,19 @@ class HomePage extends StatelessWidget {
           _buildDrawerItem(
             icon: 'lib/assets/vectors/consultation.png',
             title: 'Consultation',
-            onTap: () {}
+            onTap: () {
+              Get.to(() => const ConsultBookingPage());
+            }
           ),
           const SizedBox(height: 20),
           _buildDrawerItem(
             icon: 'lib/assets/vectors/appointment1.png',
             title: 'Appointment & Scheduling',
-            onTap: (){}
+            onTap: (){
+              Get.to(() => const Bookappointment());
+            }
           ),
-          _buildDivider(),
+          _buildDivider(), 
           const SizedBox(height: 20),
           _buildDrawerItem(
             icon: 'lib/assets/vectors/prescription1.png',
@@ -82,6 +89,9 @@ class HomePage extends StatelessWidget {
           _buildDrawerItem(
             icon: 'lib/assets/vectors/maternal1.png',
             title: 'Maternal & Child Health Education',
+            onTap: (){
+              Get.toNamed('/therapistconsult');
+            }
           ),
           const SizedBox(height: 20),
           _buildDrawerItem(
@@ -516,6 +526,11 @@ class HomePage extends StatelessWidget {
       case 0:
         // Home - Already on home page, no navigation needed
         // Just update the index in controller if needed
+        Get.to(
+          () => const HomePage(),
+          transition: Transition.rightToLeftWithFade,
+          duration: const Duration(milliseconds: 300),
+        );
         break;
         
       case 1:
@@ -536,35 +551,20 @@ class HomePage extends StatelessWidget {
           duration: const Duration(milliseconds: 300),
         );
 
-        // Temporary fallback - show snackbar until prescriptions page is ready
-        Get.snackbar(
-          'Navigation',
-          'Prescriptions page - Coming Soon!',
-          snackPosition: SnackPosition.BOTTOM,
-          duration: const Duration(seconds: 2),
-          backgroundColor: const Color(0xFF007F67),
-          colorText: Colors.white,
-        );
+     
         break;
         
       case 3:
         // Profile - Navigate to Profile page
         // Uncomment and update with your actual profile page
-        // Get.to(
-        //   () => const ProfilePage(),
-        //   transition: Transition.rightToLeftWithFade,
-        //   duration: const Duration(milliseconds: 300),
-        // );
+         Get.to(
+           () => const ProfilePage(),
+           transition: Transition.rightToLeftWithFade,
+           duration: const Duration(milliseconds: 300),
+         );
         
         // Temporary fallback - show snackbar until profile page is ready
-        Get.snackbar(
-          'Navigation',
-          'Profile page - Coming Soon!',
-          snackPosition: SnackPosition.BOTTOM,
-          duration: const Duration(seconds: 2),
-          backgroundColor: const Color(0xFF007F67),
-          colorText: Colors.white,
-        );
+     
         break;
         
       default:

@@ -132,7 +132,7 @@ class PreliminaryQuestionController extends GetxController {
       _updateStepStatus();
     } else {
       // Exit questionnaire
-      Get.back();
+      Get.offAllNamed('/browsedoctorspage');
     }
   }
   

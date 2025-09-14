@@ -2,7 +2,7 @@
         import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:camera/camera.dart';
-import 'package:healio_version_2/app/modules/patients/controllers/videocallcontroller.dart';
+import 'package:healio_version_2/app/modules/chat/controllers/videocallcontroller.dart';
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 
 

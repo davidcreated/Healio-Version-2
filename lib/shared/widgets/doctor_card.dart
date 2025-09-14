@@ -1,7 +1,7 @@
 // SEPARATE FILE: lib/src/widgets/doctor_card.dart
 // ==============================================================================
 import 'package:flutter/material.dart';
-import 'package:healio_version_2/app/modules/doctors/controllers/doctor.dart' show Doctor;
+import 'package:healio_version_2/models/doctor1.dart' show Doctor;
 // import '../models/doctor.dart';
 
 /// A reusable widget for displaying a doctor's information in a card format.

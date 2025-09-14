@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:healio_version_2/Screens/PatientSection/homepage/consultpage.dart' show Consultpage, ConsultBookingPage;
-import 'package:healio_version_2/Screens/PatientSection/homepage/patienthomepage.dart';
-import 'package:healio_version_2/Screens/PatientSection/homepage/prescriptionscreen.dart';
+
 import 'package:healio_version_2/app/modules/doctors/controllers/browsedoctorscontrollers.dart.dart';
 
 // Import your page files here - uncomment and update paths as needed
@@ -10,8 +8,8 @@ import 'package:healio_version_2/app/modules/doctors/controllers/browsedoctorsco
 // import 'package:healio_version_2/app/modules/prescriptions/views/prescriptions_page.dart';
 // import 'package:healio_version_2/app/modules/profile/views/profile_page.dart';
 
-class Browsedoctors extends StatelessWidget {
-  const Browsedoctors({super.key});
+class Therapistconsult extends StatelessWidget {
+  const Therapistconsult ({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +26,7 @@ class Browsedoctors extends StatelessWidget {
     final double headerHeight = isTablet ? 220.0 : 180.0;
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F6FA),
+      backgroundColor: const Color(0xFF051426),
       body: SingleChildScrollView(
         child: ConstrainedBox(
           constraints: BoxConstraints(
@@ -45,7 +43,7 @@ class Browsedoctors extends StatelessWidget {
                     decoration: const BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: AssetImage('lib/assets/images/patient/findlabtopbar.png'),
+                        image: AssetImage('lib/assets/images/patient/therapisttopbar.png'),
                       ),
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(20.0),
@@ -73,7 +71,7 @@ class Browsedoctors extends StatelessWidget {
                           width: isTablet ? 44 : 36,
                           height: isTablet ? 44 : 36,
                           decoration: BoxDecoration(
-                            color: const Color(0xFF002180),
+                            color: const Color(0xFFCCD3E6),
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: [
                               BoxShadow(
@@ -86,7 +84,7 @@ class Browsedoctors extends StatelessWidget {
                           child: IconButton(
                             icon: Icon(
                               Icons.arrow_back,
-                              color: Colors.white,
+                              color: Color(0xff002180),
                               size: isTablet ? 20 : 20,
                             ),
                             onPressed: controller.goBack,
@@ -96,9 +94,9 @@ class Browsedoctors extends StatelessWidget {
                         const SizedBox(width: 12),
                         Expanded(
                           child: Text(
-                            'Browse Doctors',
+                            'Private Session',
                             style: TextStyle(
-                              color: const Color(0xFF2D2D2D),
+                              color: Colors.white,
                               fontWeight: FontWeight.w600,
                               fontSize: isTablet ? 22 : 18,
                               fontFamily: 'NotoSans',
@@ -194,7 +192,7 @@ class Browsedoctors extends StatelessWidget {
                         fontFamily: 'NotoSans',
                         fontWeight: FontWeight.w700,
                         fontSize: isTablet ? 20 : 17,
-                        color: const Color(0xFF061234),
+                        color:  Colors.white,
                       ),
                     ),
                     GestureDetector(
@@ -217,62 +215,7 @@ class Browsedoctors extends StatelessWidget {
               SizedBox(height: isTablet ? 28 : 20),
               
               // Horizontal list of specializations - Better layout
-              SizedBox(
-                height: isTablet ? 130 : 110,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  padding: EdgeInsets.symmetric(horizontal: horizontalPadding - 4),
-                  children: [
-                    Row(
-                      children: [
-                        _SpecializationItem(
-                          imagePath: 'lib/assets/icons/tooth.png',
-                          label: 'Dental',
-                          isTablet: isTablet,
-                          onTap: () => controller.onSpecializationTap('Dental'),
-                        ),
-                        SizedBox(width: isTablet ? 28 : 20),
-                        _SpecializationItem(
-                          imagePath: 'lib/assets/icons/brain.png',
-                          label: 'Neuro',
-                          isTablet: isTablet,
-                          onTap: () => controller.onSpecializationTap('Neuro'),
-                        ),
-                        SizedBox(width: isTablet ? 28 : 20),
-                        _SpecializationItem(
-                          imagePath: 'lib/assets/icons/heart.png',
-                          label: 'Cardio',
-                          isTablet: isTablet,
-                          onTap: () => controller.onSpecializationTap('Cardio'),
-                        ),
-                        SizedBox(width: isTablet ? 28 : 20),
-                        _SpecializationItem(
-                          imagePath: 'lib/assets/icons/bone.png',
-                          label: 'Ortho',
-                          isTablet: isTablet,
-                          onTap: () => controller.onSpecializationTap('Ortho'),
-                        ),
-                        SizedBox(width: isTablet ? 28 : 20),
-                        _SpecializationItem(
-                          imagePath: 'lib/assets/icons/tooth.png',
-                          label: 'Spine',
-                          isTablet: isTablet,
-                          onTap: () => controller.onSpecializationTap('Spine'),
-                        ),
-                        SizedBox(width: isTablet ? 28 : 20),
-                        _SpecializationItem(
-                          imagePath: 'lib/assets/icons/bone.png',
-                          label: 'Joint',
-                          isTablet: isTablet,
-                          onTap: () => controller.onSpecializationTap('Joint'),
-                        ),
-                        SizedBox(width: horizontalPadding - 4),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              
+             
               // Nearby Doctors section - Better spacing
               Padding(
                 padding: EdgeInsets.only(
@@ -288,7 +231,7 @@ class Browsedoctors extends StatelessWidget {
                       fontFamily: 'NotoSans',
                       fontWeight: FontWeight.w700,
                       fontSize: isTablet ? 22 : 18,
-                      color: const Color(0xFF061234),
+                      color: Colors.white,
                     ),
                   ),
                 ),
@@ -309,112 +252,12 @@ class Browsedoctors extends StatelessWidget {
         ),
       ),
       
-      // Bottom Navigation Bar with proper navigation logic
-      bottomNavigationBar: Obx(() => BottomNavigationBar(
-        currentIndex: controller.selectedIndex.value,
-        onTap: (index) {
-          // Update the controller's selected index
-          controller.onTabSelected(index);
-          // Handle navigation
-          _handleBottomNavigation(index);
-        },
-        selectedItemColor: const Color(0xFF007F67),
-        unselectedItemColor: Colors.grey,
-        showUnselectedLabels: true,
-        type: BottomNavigationBarType.fixed,
-        elevation: 8,
-        backgroundColor: Colors.white,
-        selectedLabelStyle: TextStyle(
-          fontSize: isTablet ? 13 : 12,
-          fontWeight: FontWeight.w600,
-        ),
-        unselectedLabelStyle: TextStyle(
-          fontSize: isTablet ? 12 : 11,
-        ),
-        iconSize: isTablet ? 26 : 24,
-        items: const [
-          BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage('lib/assets/images/home.png')),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage('lib/assets/images/doctor.png')),
-            label: 'Doctors',
-          ),
-          BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage('lib/assets/images/prescription.png')),
-            label: 'Prescriptions',
-          ),
-          BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage('lib/assets/images/profile.png')),
-            label: 'Profile',
-          ),
-        ],
-      )),
+   
     );
   }
 
   /// Handles bottom navigation with proper navigation logic
-  void _handleBottomNavigation(int index) {
-    switch (index) {
-      case 0:
-        // Home - Navigate back to HomePage
-        // Uncomment and update with your actual HomePage import
-         Get.off(() => const HomePage());
-        
-        // Temporary fallback - navigate back
-        Get.back();
-        break;
-        
-      case 1:
-        // Doctors - Already on Doctors page, no navigation needed
-        break;
-        
-      case 2:
-        // Prescriptions - Navigate to Prescriptions page
-        // Uncomment and update with your actual prescriptions page
-        Get.to(
-          () => const Prescriptionpage(),
-          transition: Transition.rightToLeftWithFade,
-          duration: const Duration(milliseconds: 300),
-        );
-
-        // Temporary fallback - show snackbar until prescriptions page is ready
-        Get.snackbar(
-          'Navigation',
-          'Prescriptions page - Coming Soon!',
-          snackPosition: SnackPosition.BOTTOM,
-          duration: const Duration(seconds: 2),
-          backgroundColor: const Color(0xFF007F67),
-          colorText: Colors.white,
-        );
-        break;
-        
-      case 3:
-        // Profile - Navigate to Profile page
-        // Uncomment and update with your actual profile page
-        // Get.to(
-        //   () => const ProfilePage(),
-        //   transition: Transition.rightToLeftWithFade,
-        //   duration: const Duration(milliseconds: 300),
-        // );
-        
-        // Temporary fallback - show snackbar until profile page is ready
-        Get.snackbar(
-          'Navigation',
-          'Profile page - Coming Soon!',
-          snackPosition: SnackPosition.BOTTOM,
-          duration: const Duration(seconds: 2),
-          backgroundColor: const Color(0xFF007F67),
-          colorText: Colors.white,
-        );
-        break;
-        
-      default:
-        // Invalid index - should not happen
-        break;
-    }
-  }
+  
 
   _card sarahudy(bool isTablet, double horizontalPadding, BrowseDoctorsController controller) {
     return _card(
@@ -482,69 +325,6 @@ class Browsedoctors extends StatelessWidget {
 }
 
 // Specialization Item Widget - Better design with responsive sizing
-class _SpecializationItem extends StatelessWidget {
-  final String imagePath;
-  final String label;
-  final bool isTablet;
-  final VoidCallback onTap;
-
-  const _SpecializationItem({
-    required this.imagePath,
-    required this.label,
-    required this.isTablet,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final double itemSize = isTablet ? 80 : 68;
-    
-    return GestureDetector(
-      onTap: onTap,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            width: itemSize,
-            height: itemSize,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(isTablet ? 20 : 16),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.08),
-                  blurRadius: 8,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(isTablet ? 20 : 16),
-              child: Image.asset(
-                imagePath,
-                width: itemSize,
-                height: itemSize,
-                fit: BoxFit.cover,
-               
-                  
-                
-              ),
-            ),
-          ),
-          SizedBox(height: isTablet ? 12 : 8),
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: isTablet ? 15 : 13,
-              fontWeight: FontWeight.w600,
-              color: const Color(0xFF061234),
-              fontFamily: 'NotoSans',
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
 
 
 // Doctor Card Widget - Better alignment and spacing with responsive sizing
@@ -588,10 +368,10 @@ class _card extends StatelessWidget {
           maxWidth: isTablet ? 600 : double.infinity,
         ),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Colors.transparent,
           borderRadius: BorderRadius.circular(isTablet ? 20 : 16),
           border: Border.all(
-            color: const Color(0xFF002180).withOpacity(0.1),
+            color: const Color(0xFFDFE8FC),
             width: 1.0,
           ),
           boxShadow: [
@@ -659,12 +439,12 @@ class _card extends StatelessWidget {
                                   fontFamily: 'NotoSans',
                                   fontWeight: FontWeight.w700,
                                   fontSize: isTablet ? 18 : 16,
-                                  color: const Color(0xFF061234),
+                                  color: Colors.white,
                                 ),
                               ),
                             ),
                             Icon(Icons.verified,
-                                color: const Color(0xFF2735FD), 
+                                color: Colors.white, 
                                 size: isTablet ? 22 : 18),
                           ],
                         ),
@@ -680,7 +460,7 @@ class _card extends StatelessWidget {
                               child: Text(
                                 specialization,
                                 style: TextStyle(
-                                  color: const Color(0xFF686868),
+                                  color: Colors.white,
                                   fontSize: isTablet ? 15 : 13,
                                   fontFamily: 'NotoSans',
                                   fontWeight: FontWeight.w500,
@@ -701,7 +481,7 @@ class _card extends StatelessWidget {
                               child: Text(
                                 location,
                                 style: TextStyle(
-                                  color: const Color(0xFF686868),
+                                  color:Colors.white,
                                   fontSize: isTablet ? 15 : 13,
                                   fontFamily: 'NotoSans',
                                   fontWeight: FontWeight.w500,
@@ -715,7 +495,7 @@ class _card extends StatelessWidget {
                         Text(
                           description,
                           style: TextStyle(
-                            color: const Color(0xFF061234),
+                            color: Colors.white,
                             fontSize: isTablet ? 15 : 13,
                             fontFamily: 'NotoSans',
                             height: 1.3,
@@ -738,7 +518,7 @@ class _card extends StatelessWidget {
                             Text(
                               rating,
                               style: TextStyle(
-                                color: const Color(0xFF061234),
+                                color: Colors.white,
                                 fontWeight: FontWeight.w700,
                                 fontSize: isTablet ? 15 : 13,
                                 fontFamily: 'NotoSans',
@@ -748,7 +528,7 @@ class _card extends StatelessWidget {
                             Text(
                               '· $reviews',
                               style: TextStyle(
-                                color: const Color(0xFF686868),
+                                color: Colors.white,
                                 fontSize: isTablet ? 15 : 13,
                                 fontFamily: 'NotoSans',
                               ),
@@ -793,9 +573,7 @@ class _card extends StatelessWidget {
                   child: SizedBox(
                     height: isTablet ? 56 : 48,
                     child: ElevatedButton(
-                      onPressed: () {
-                        Get.to(() => const ConsultBookingPage());
-                      },
+                      onPressed: onConsultNow,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFFF5F7FB),
                         foregroundColor: const Color(0xFF002180),
