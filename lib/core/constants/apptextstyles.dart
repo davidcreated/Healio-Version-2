@@ -295,6 +295,22 @@ class AppTextStyles {
   );
 
   static var inputTextStyle;
+
+
+  static const TextStyle titleTextStyle = TextStyle(
+    fontFamily: 'NotoSerif',
+    fontWeight: FontWeight.bold,
+    fontSize: 32,
+    color: Colors.black87,
+  );
+  
+  static const TextStyle subtitleTextStyle = TextStyle(
+    fontFamily: 'NotoSans',
+    fontSize: 16,
+    color: Colors.grey,
+  );
+  
+
 }
  
 

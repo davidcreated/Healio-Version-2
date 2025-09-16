@@ -82,7 +82,7 @@ dependencies:
   
 
   iconsax: ^0.0.8
-  
+  table_calendar: ^3.0.9
 
   
 dev_dependencies:

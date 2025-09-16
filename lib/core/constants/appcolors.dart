@@ -6,9 +6,11 @@ class AppColors {
   AppColors._();
 
   // Primary Colors - Based on your Figma design
+  static const Color primaryColor = Color(0xFF002180);
+  static const Color backgroundColor = Colors.white;
   static const Color primaryBlue = Color(0xFF2E7BF0); // Main blue from your design
   static const Color primaryDark = Color(0xFF1E5BA8);
-    static const Color primaryColor = Color(0xFF002180);
+    
   static const Color primaryLight = Color(0xFF5A9BF5);
   static const Color primaryAccent = Color(0xFFE8F3FF);
     static const Color textColorBlack87 = Colors.black87;

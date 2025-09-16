@@ -8,8 +8,8 @@ import 'package:healio_version_2/app/modules/doctors/controllers/browsedoctorsco
 // import 'package:healio_version_2/app/modules/prescriptions/views/prescriptions_page.dart';
 // import 'package:healio_version_2/app/modules/profile/views/profile_page.dart';
 
-class Therapistconsult extends StatelessWidget {
-  const Therapistconsult ({super.key});
+class Privatetherapistconsult extends StatelessWidget {
+  const Privatetherapistconsult ({super.key});
 
   @override
   Widget build(BuildContext context) {

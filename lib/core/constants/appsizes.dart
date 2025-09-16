@@ -3,7 +3,7 @@ class AppSizes {
   // General Spacing & Padding
   static const double horizontalPaddingRatio = 0.06;
   static const double verticalPaddingRatio = 0.03;
-  static const double smallVerticalSpaceRatio = 0.02; // SizedBox(height: height * 0.02)
+  static const double smallVerticalSpaceRatio = 0.12; // SizedBox(height: height * 0.12)
   static const double mediumVerticalSpaceRatio = 0.04; // SizedBox(height: height * 0.04)
   static const double sectionSpacing = 24.0; // General spacing between major sections
 
@@ -199,4 +199,7 @@ class AppSizes {
   static const double appointmentPageButtonSectionSpacing = 24.0; // Ensuring this is present
   static const double appointmentPageDatePaddingHorizontal = 8.0; // Ensuring this is present
   static const double appointmentPageDatePaddingVertical = 2.0; // Ensuring this is present
+
+
+    
 }

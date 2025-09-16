@@ -83,7 +83,7 @@ class PatientSignupController extends GetxController
       case Role.doctor:
         // Navigate to doctor signup page
         // TODO: Uncomment when doctor signup route is ready
-        // Get.offAllNamed(AppRoutes.DoctorSignUp);
+        Get.offAllNamed(AppRoutes.doctorSignUp);
         _showSuccessSnackbar('Doctor Selected', 'Redirecting to doctor registration...');
         break;
         

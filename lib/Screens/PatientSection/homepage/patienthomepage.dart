@@ -83,14 +83,16 @@ class HomePage extends StatelessWidget {
           _buildDrawerItem(
             icon: 'lib/assets/vectors/prescription1.png',
             title: 'Prescription & Medication Mgt',
-            onTap: (){}
+            onTap: (){
+              Get.toNamed('/prescriptionpage');
+            }
           ),
           const SizedBox(height: 20),
           _buildDrawerItem(
             icon: 'lib/assets/vectors/maternal1.png',
             title: 'Maternal & Child Health Education',
             onTap: (){
-              Get.toNamed('/therapistconsult');
+              ///Get.toNamed('/therapistconsult');
             }
           ),
           const SizedBox(height: 20),
@@ -98,7 +100,7 @@ class HomePage extends StatelessWidget {
             icon: 'lib/assets/vectors/mental1.png',
             title: 'Mental Health Support',
             onTap: (){
-              Get.toNamed('/mentalhealth');
+              Get.toNamed('/mentalhealthsupportpage');
             }
           ),
           const SizedBox(height: 20),
@@ -107,7 +109,9 @@ class HomePage extends StatelessWidget {
           _buildDrawerItem(
             icon: 'lib/assets/vectors/wearable1.png',
             title: 'Wearable Devices & IOT Integration',
-            onTap: () {}
+            onTap: () {
+              Get.toNamed('/iot-requirement');
+            }
           ),
           const SizedBox(height: 20),
           _buildDrawerItem(
